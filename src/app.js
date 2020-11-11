@@ -3,7 +3,14 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
+const cors = require('cors')
+const bodyParser = require('body-parser')
+
 const Menu = require('../src/models/menumodel')
+
+//Middleware
+app.use(bodyParser.json())
+app.use(cors())
 
 // Connect to MongoDB
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
