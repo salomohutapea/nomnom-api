@@ -31,7 +31,7 @@ app.get('/data', (req, res) => {
 
 })
 
-app.post('/newmenu', async (req, res) => {
+app.post('/newmenu', (req, res) => {
 
     // Add new menu to database
     if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
@@ -42,14 +42,14 @@ app.post('/newmenu', async (req, res) => {
     else {
         const menu = new Menu(req.body)
 
-        menu = await menu.save()
+        menu = menu.save()
 
         res.send('Menu berhasil ditambahkan')
         res.status(200)
     }
 })
 
-app.post('/tambahpesanan', async (req, res) => {
+app.post('/tambahpesanan', (req, res) => {
 
     if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
         res.send('Pesanan kosong')
@@ -58,7 +58,7 @@ app.post('/tambahpesanan', async (req, res) => {
 
     else {
         const pesanan = new Pesanan(req.body)
-        pesanan = await pesanan.save()
+        pesanan = pesanan.save()
     }
 })
 
