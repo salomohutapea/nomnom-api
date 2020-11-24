@@ -31,34 +31,42 @@ app.get('/data', (req, res) => {
 
 })
 
-app.post('/newmenu', (req, res) => {
+app.post('/newmenu', async (req, res) => {
 
     // Add new menu to database
     if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
         res.send('Harap masukkan menu')
         res.status(403)
-    }
-
-    else {
+    } else {
         const menu = new Menu(req.body)
 
-        menu = menu.save()
+        try {
+            menu = await menu.save()
+            res.status(200)
 
-        res.send('Menu berhasil ditambahkan')
-        res.status(200)
+        } catch {
+            res.send('Menu ditambahkan')
+        }
     }
 })
 
-app.post('/tambahpesanan', (req, res) => {
+app.post('/tambahpesanan', async (req, res) => {
 
     if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
         res.send('Pesanan kosong')
         res.status(402)
-    }
-
+    } 
+    
     else {
         const pesanan = new Pesanan(req.body)
-        pesanan = pesanan.save()
+
+        try {
+            pesanan = await pesanan.save()
+            res.status(200)
+
+        } catch {
+            res.send('Pesanan ditambahkan')
+        }
     }
 })
 
