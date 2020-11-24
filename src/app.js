@@ -34,12 +34,11 @@ app.get('/data', (req, res) => {
 app.post('/newmenu', async (req, res) => {
 
     // Add new menu to database
-    req.
-        if(req.body.constructor === Object && Object.keys(req.body).length === 0) {
+    if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
         res.send('Harap masukkan menu')
         res.status(403)
-    } 
-    
+    }
+
     else {
         const menu = new Menu(req.body)
 
