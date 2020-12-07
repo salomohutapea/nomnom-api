@@ -42,6 +42,7 @@ app.post('/newmenu', async (req, res) => {
 
         try {
             menu = await menu.save()
+
             res.status(200)
 
         } catch {
@@ -55,8 +56,8 @@ app.post('/tambahpesanan', async (req, res) => {
     if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
         res.send('Pesanan kosong')
         res.status(402)
-    } 
-    
+    }
+
     else {
         const pesanan = new Pesanan(req.body)
 
@@ -70,6 +71,15 @@ app.post('/tambahpesanan', async (req, res) => {
     }
 })
 
+app.get('/pesananselesai', (req, res) => {
 
+    Pesanan.deleteOne({ _id: req.query.id}, function (err) {
+        if (err) console.log(err)
+        res.send('Pesanan selesai')
+    });
+    
+    res.status(200)
+
+})
 
 app.listen(process.env.PORT || 2000)

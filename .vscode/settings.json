@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/da028d7f-fb1b-414e-941e-d48049a9b784/resourceGroups/nomnomfree/providers/Microsoft.Web/sites/nomnom-api",
+    "appService.deploySubpath": "."
+}
